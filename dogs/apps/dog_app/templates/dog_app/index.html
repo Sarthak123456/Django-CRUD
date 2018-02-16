@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello</title>
+    </head>
+    <body>
+      
+      <form action="/create" method="post">
+          {% csrf_token %}
+          <label for="name">Name: <input type="text" name="name"  id="name"/></label>
+          <label for="breed">Breed: <input type="text"  id="breed" name="breed"/></label>
+          <input type="Submit" value="Create"/>
+      </form>
+      <table border="1">
+          <thead>
+              <tr>
+              <th>Dog name</th>
+              <th>Breed</th>
+              <th>created_at</th>
+              <th>updated_at</th>
+              <th>Actionsa</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for dog in dogs %}
+              <tr>
+              <td>{{ dog.name }}</td>
+              <td>{{ dog.breed }}</td>
+              <td>{{ dog.created_at }}</td>
+              <td>{{ dog.updated_at }}</td>
+              <td><a href="/edit/{{ dog.id }}">Edit</a> <a href="/delete/{{ dog.id }}">Delete</a></td>
+              </tr>
+              {% endfor %}
+              
+          </tbody>
+      </table>
+    </body>
+</html>
